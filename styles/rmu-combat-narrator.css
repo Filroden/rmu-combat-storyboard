@@ -3,7 +3,7 @@
 =================================================================== */
 
 /* --- MATERIAL DESIGN ICONS --- */
-.module-name-icon {
+.rmu-combat-narrator-icon {
     display: inline-block;
     width: var(--filroden-font-size-l); 
     height: var(--filroden-font-size-l);
@@ -21,42 +21,42 @@
     margin: 0;
 }
 
-.module-name-icon.example     { -webkit-mask-image: url('../icons/example.svg'); mask-image: url('../icons/example.svg'); }
+.rmu-combat-narrator-icon.example     { -webkit-mask-image: url('../icons/example.svg'); mask-image: url('../icons/example.svg'); }
 
 
 /* --- APPLICATION SCROLLBARS --- */
-.module-name-window * {
+.rmu-combat-narrator-window * {
     scrollbar-width: auto !important;
     scrollbar-color: auto !important;
 }
 
-.module-name-window .module-name-window-scrollable::-webkit-scrollbar {
+.rmu-combat-narrator-window .rmu-combat-narrator-window-scrollable::-webkit-scrollbar {
     width: 8px !important;
     height: 8px !important;
 }
 
-.module-name-window .module-name-window-scrollable::-webkit-scrollbar-track {
+.rmu-combat-narrator-window .rmu-combat-narrator-window-scrollable::-webkit-scrollbar-track {
     background: var(--filroden-color-bg-hover-solid) !important;
     border-radius: var(--filroden-radius-large) !important;
 }
 
-.module-name-window .module-name-window-scrollable::-webkit-scrollbar-thumb {
+.rmu-combat-narrator-window .rmu-combat-narrator-window-scrollable::-webkit-scrollbar-thumb {
     background-color: var(--filroden-color-text-accent) !important;
     border-radius: var(--filroden-radius-large) !important;
     border: 1px solid rgba(0, 0, 0, 0.6) !important;
 }
 
-.module-name-window .module-name-window-scrollable::-webkit-scrollbar-thumb:hover {
+.rmu-combat-narrator-window .rmu-combat-narrator-window-scrollable::-webkit-scrollbar-thumb:hover {
     background-color: var(--filroden-color-text-accent-hover) !important;
 }
 
-.module-name-window .module-name-window-scrollable::-webkit-scrollbar-button {
+.rmu-combat-narrator-window .rmu-combat-narrator-window-scrollable::-webkit-scrollbar-button {
     display: none;
 }
 
 
 /* --- TOOLTIPS --- */
-#tooltip.module-name-tooltip {
+#tooltip.rmu-combat-narrator-tooltip {
     max-width: 300px !important;
     border: 1px solid var(--filroden-color-text-accent);
     border-radius: var(--filroden-radius-small);
@@ -75,7 +75,7 @@
 
 /* --- BUTTONS --- */
 /* Standard button styles for all buttons */
-.module-name-window button {
+.rmu-combat-narrator-window button {
     background: var(--filroden-color-bg-light-solid);
     border: 1px solid var(--filroden-color-border);
     color: var(--filroden-color-text-main-solid);
@@ -85,21 +85,21 @@
     transition: all 0.1s ease;
 }
 
-.module-name-window button:hover {
+.rmu-combat-narrator-window button:hover {
     background: var(--filroden-color-bg-hover-solid);
     border-color: var(--filroden-color-text-accent);
     color: var(--filroden-color-text-main-solid);
     box-shadow: none;
 }
 
-.module-name-window *:focus-visible,
-.module-name-window button:focus {
+.rmu-combat-narrator-window *:focus-visible,
+.rmu-combat-narrator-window button:focus {
     outline: 2px solid var(--filroden-color-text-accent);
     border-radius: var(--filroden-radius-small);
 }
 
 /* Variant styles for primary and danger buttons */
-.module-name-window .module-name-btn {
+.rmu-combat-narrator-window .rmu-combat-narrator-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -110,36 +110,36 @@
     padding: var(--filroden-space-s) var(--filroden-space-m);
 }
 
-.module-name-window .module-name-btn:hover {
+.rmu-combat-narrator-window .rmu-combat-narrator-btn:hover {
     background: var(--filroden-color-bg-hover-solid);
     border-color: var(--filroden-color-text-accent);
     color: var(--filroden-color-text-main-solid);
 }
 
-.module-name-window .module-name-btn.danger {
+.rmu-combat-narrator-window .rmu-combat-narrator-btn.danger {
     color: var(--filroden-color-danger);
     width: 100%;
 }
 
-.module-name-window .module-name-btn.danger:hover {
+.rmu-combat-narrator-window .rmu-combat-narrator-btn.danger:hover {
     color: var(--filroden-color-danger);
 }
 
-.module-name-window .module-name-btn.primary {
+.rmu-combat-narrator-window .rmu-combat-narrator-btn.primary {
     color: var(--filroden-color-text-accent);
 }
 
-.module-name-window .module-name-btn.primary:hover {
+.rmu-combat-narrator-window .rmu-combat-narrator-btn.primary:hover {
     color: var(--filroden-color-text-accent);
 }
 
 
 /* --- INPUTS AND SELECTS --- */
-.module-name input[type="text"],
-.module-name input[type="number"],
-.module-name input[type="time"],
-.module-name select,
-.module-name textarea {
+.rmu-combat-narrator input[type="text"],
+.rmu-combat-narrator input[type="number"],
+.rmu-combat-narrator input[type="time"],
+.rmu-combat-narrator select,
+.rmu-combat-narrator textarea {
     background: var(--filroden-color-bg-medium-solid);
     border: 1px solid var(--filroden-color-border);
     color: var(--filroden-color-text-main-solid);
@@ -149,27 +149,27 @@
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.module-name input[type="text"]:focus,
-.module-name input[type="number"]:focus,
-.module-name input[type="time"],
-.module-name select:focus,
-.module-name textarea:focus {
+.rmu-combat-narrator input[type="text"]:focus,
+.rmu-combat-narrator input[type="number"]:focus,
+.rmu-combat-narrator input[type="time"],
+.rmu-combat-narrator select:focus,
+.rmu-combat-narrator textarea:focus {
     border-color: var(--filroden-color-text-accent);
     box-shadow: var(--filroden-shadow-focus);
 }
 
-.module-name input::placeholder,
-.module-name textarea::placeholder {
+.rmu-combat-narrator input::placeholder,
+.rmu-combat-narrator textarea::placeholder {
     color: var(--filroden-color-text-placeholder-solid);
     opacity: 1;
     font-style: italic;
 }
 
-.module-name input[type="time"]::-webkit-calendar-picker-indicator {
+.rmu-combat-narrator input[type="time"]::-webkit-calendar-picker-indicator {
     display: none;
 }
 
-.module-name textarea {
+.rmu-combat-narrator textarea {
     resize: vertical;
     font-family: monospace;
     line-height: var(--filroden-line-height-body);
@@ -177,8 +177,8 @@
 
 
 /* --- CHECKBOXES AND RADIO BUTTONS --- */
-.module-name-checkbox,
-.module-name-radio {
+.rmu-combat-narrator-checkbox,
+.rmu-combat-narrator-radio {
     appearance: auto;
     accent-color: var(--filroden-color-text-accent);
     color-scheme: dark;
@@ -191,28 +191,28 @@
     text-align: center;
 }
 
-.module-name-checkbox::before,
-.module-name-checkbox::after,
-.module-name-radio::before,
-.module-name-radio::after {
+.rmu-combat-narrator-checkbox::before,
+.rmu-combat-narrator-checkbox::after,
+.rmu-combat-narrator-radio::before,
+.rmu-combat-narrator-radio::after {
     content: none;
 }
 
 
 /* --- ACCESSIBILITY INTERACTIONS --- */
-.module-name *:focus-visible,
-.module-name button:focus {
+.rmu-combat-narrator *:focus-visible,
+.rmu-combat-narrator button:focus {
     outline: 2px solid var(--filroden-color-text-accent);
     border-radius: var(--filroden-radius-small);
 }
 
-.module-name a:hover {
+.rmu-combat-narrator a:hover {
     text-shadow: none;
 }
 
-.module-name button.active,
-.module-name [class*="module-name-"][class*="-btn"].active,
-.module-name .module-name-pill.active {
+.rmu-combat-narrator button.active,
+.rmu-combat-narrator [class*="rmu-combat-narrator-"][class*="-btn"].active,
+.rmu-combat-narrator .rmu-combat-narrator-pill.active {
     outline: none;
     box-shadow: none;
 }
@@ -220,7 +220,7 @@
 
 /* --- APPLICATION LAYOUTS --- */
 /* Standard two-column wrapper */
-.module-name .module-name-layout {
+.rmu-combat-narrator .rmu-combat-narrator-layout {
     display: flex;
     height: 100%;
     width: 100%;
@@ -228,7 +228,7 @@
 }
 
 /* Standard Sidebar */
-.module-name .module-name-sidebar {
+.rmu-combat-narrator .rmu-combat-narrator-sidebar {
     flex: 0 0 15rem; /* Default width, easily overridden */
     display: flex;
     flex-direction: column;
@@ -240,7 +240,7 @@
 }
 
 /* Standard Main Content Area */
-.module-name .module-name-main {
+.rmu-combat-narrator .rmu-combat-narrator-main {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -251,16 +251,16 @@
 
 
 /* --- TABBED NAVIGATION --- */
-.module-name nav.tabs,
-.module-name .module-name-tabs {
+.rmu-combat-narrator nav.tabs,
+.rmu-combat-narrator .rmu-combat-narrator-tabs {
     display: flex;
     flex: 0 0 auto;
     background: var(--filroden-color-bg-medium-solid);
     border-block-end: 1px solid var(--filroden-color-border);
 }
 
-.module-name nav.tabs .item,
-.module-name .module-name-tabs .item {
+.rmu-combat-narrator nav.tabs .item,
+.rmu-combat-narrator .rmu-combat-narrator-tabs .item {
     flex: 1;
     text-align: center;
     padding: var(--filroden-space-s);
@@ -272,14 +272,14 @@
     transition: background-color 0.2s, color 0.2s;
 }
 
-.module-name nav.tabs .item:hover,
-.module-name .module-name-tabs .item:hover {
+.rmu-combat-narrator nav.tabs .item:hover,
+.rmu-combat-narrator .rmu-combat-narrator-tabs .item:hover {
     color: var(--filroden-color-text-main-solid);
     background: var(--filroden-color-bg-hover-solid);
 }
 
-.module-name nav.tabs .item.active,
-.module-name .module-name-tabs .item.active {
+.rmu-combat-narrator nav.tabs .item.active,
+.rmu-combat-narrator .rmu-combat-narrator-tabs .item.active {
     color: var(--filroden-color-text-accent);
     border-bottom-color: var(--filroden-color-text-accent);
     background: var(--filroden-color-bg-darkest);
@@ -287,7 +287,7 @@
 
 
 /* --- STRUCTURED FORMS --- */
-.module-name fieldset.module-name-fieldset {
+.rmu-combat-narrator fieldset.rmu-combat-narrator-fieldset {
     border: var(--filroden-border-main);
     border-radius: var(--filroden-radius-medium);
     padding: var(--filroden-space-m);
@@ -297,14 +297,14 @@
     flex-direction: column;
 }
 
-.module-name fieldset.module-name-fieldset legend {
+.rmu-combat-narrator fieldset.rmu-combat-narrator-fieldset legend {
     font-weight: bold;
     color: var(--filroden-color-text-accent);
     padding-inline: var(--filroden-space-xs);
     font-size: var(--filroden-font-size-s);
 }
 
-.module-name .form-group {
+.rmu-combat-narrator .form-group {
     display: grid;
     grid-template-columns: max-content minmax(0, 1fr);
     align-items: center;
@@ -312,7 +312,7 @@
     margin-block-end: var(--filroden-space-s);
 }
 
-.module-name .form-group label {
+.rmu-combat-narrator .form-group label {
     margin: 0;
     color: var(--filroden-color-text-main-solid);
     white-space: nowrap;
@@ -321,8 +321,8 @@
 
 /* --- SEMANTIC TEXT & STATES --- */
 /* Helper text below inputs or headers */
-.module-name .hint,
-.module-name .module-name-notes {
+.rmu-combat-narrator .hint,
+.rmu-combat-narrator .rmu-combat-narrator-notes {
     font-size: var(--filroden-font-size-xs);
     color: var(--filroden-color-text-muted-solid);
     margin-block-start: var(--filroden-space-xxs);
@@ -330,7 +330,7 @@
 }
 
 /* Empty or missing data states */
-.module-name .module-name-empty {
+.rmu-combat-narrator .rmu-combat-narrator-empty {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -345,7 +345,7 @@
 }
 
 /* Thematic Divider */
-.module-name .module-name-divider {
+.rmu-combat-narrator .rmu-combat-narrator-divider {
     border: none;
     height: 1px;
     width: 100%;
@@ -355,7 +355,7 @@
 
 
 /* --- BADGES & PILLS --- */
-.module-name .module-name-badge {
+.rmu-combat-narrator .rmu-combat-narrator-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -371,7 +371,7 @@
     white-space: nowrap;
 }
 
-.module-name .module-name-badge.primary {
+.rmu-combat-narrator .rmu-combat-narrator-badge.primary {
     background-color: var(--filroden-color-text-accent);
     color: var(--filroden-color-text-on-accent);
     border-color: var(--filroden-color-text-accent);
@@ -382,7 +382,7 @@
    --- MAIN UI ---
 =================================================================== */
 
-.module-name {
+.rmu-combat-narrator {
     font-family: var(--filroden-font-family) !important;
     font-size: var(--filroden-font-size-s);
     background: var(--filroden-color-bg-darkest) !important;
@@ -390,21 +390,21 @@
 }
 
 /* UI direction handling for RTL languages */
-.module-name.rtl,
-.module-name[dir="rtl"] {
+.rmu-combat-narrator.rtl,
+.rmu-combat-narrator[dir="rtl"] {
     --filroden-dir-flip: -1;
 }
 
-:root:lang(ar) #tooltip.module-name-tooltip,
-:root:lang(he) #tooltip.module-name-tooltip,
-:root:lang(fa) #tooltip.module-name-tooltip,
-:root:lang(ur) #tooltip.module-name-tooltip {
+:root:lang(ar) #tooltip.rmu-combat-narrator-tooltip,
+:root:lang(he) #tooltip.rmu-combat-narrator-tooltip,
+:root:lang(fa) #tooltip.rmu-combat-narrator-tooltip,
+:root:lang(ur) #tooltip.rmu-combat-narrator-tooltip {
     direction: rtl;
     text-align: right;
 }
 
 /* Main window header styles */
-.module-name .window-header {
+.rmu-combat-narrator .window-header {
     background: var(--filroden-color-bg-darkest) !important;
     border: none !important;
     color: var(--filroden-color-text-main-solid);
@@ -416,7 +416,7 @@
     align-items: center;
 }
 
-.module-name .window-header .window-title {
+.rmu-combat-narrator .window-header .window-title {
     font-size: var(--filroden-font-size-s);
     line-height: var(--filroden-line-height-heading);
     text-align: start; 
@@ -425,13 +425,13 @@
     flex: 1;
 }
 
-.module-name .window-header .window-icon {
+.rmu-combat-narrator .window-header .window-icon {
     margin-inline-start: var(--filroden-space-xxs);
     margin-inline-end: 0;
 }
 
 /* Main window content styles */
-.module-name .window-content {
+.rmu-combat-narrator .window-content {
     background: var(--filroden-color-bg-darkest) !important;
     color: var(--filroden-color-text-main-solid);
     padding: 0;
