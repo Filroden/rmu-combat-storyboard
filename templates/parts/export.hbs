@@ -1,0 +1,16 @@
+<div class="rmu-combat-narrator-main {{#if (eq state.activeTab 'export')}}active{{/if}}" data-tab="export" data-group="primary">
+    
+    <fieldset class="rmu-combat-narrator-fieldset">
+        <legend>{{localize "RMU_NARRATOR.Wizard.Tabs.Export"}}</legend>
+        <p class="hint">{{localize "RMU_NARRATOR.Wizard.Hints.Export"}}</p>
+        
+        <div class="form-group stacked">
+            <textarea name="compiledPrompt" rows="14" readonly>{{compiledPrompt}}</textarea>
+        </div>
+
+        <button type="button" class="rmu-combat-narrator-btn primary" data-action="copyPrompt">
+            {{localize "RMU_NARRATOR.Wizard.Buttons.Copy"}}
+        </button>
+    </fieldset>
+
+</div>

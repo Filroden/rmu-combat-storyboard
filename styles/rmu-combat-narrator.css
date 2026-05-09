@@ -21,7 +21,7 @@
     margin: 0;
 }
 
-.rmu-combat-narrator-icon.example     { -webkit-mask-image: url('../icons/example.svg'); mask-image: url('../icons/example.svg'); }
+.rmu-combat-narrator-icon.wizard     { -webkit-mask-image: url('../icons/swords.svg'); mask-image: url('../icons/swords.svg'); }
 
 
 /* --- APPLICATION SCROLLBARS --- */
@@ -92,12 +92,6 @@
     box-shadow: none;
 }
 
-.rmu-combat-narrator-window *:focus-visible,
-.rmu-combat-narrator-window button:focus {
-    outline: 2px solid var(--filroden-color-text-accent);
-    border-radius: var(--filroden-radius-small);
-}
-
 /* Variant styles for primary and danger buttons */
 .rmu-combat-narrator-window .rmu-combat-narrator-btn {
     display: flex;
@@ -147,6 +141,7 @@
     min-height: var(--filroden-font-size-xl);
     padding-inline: var(--filroden-space-xs);
     transition: border-color 0.2s, box-shadow 0.2s;
+    width: fit-content;
 }
 
 .rmu-combat-narrator input[type="text"]:focus,
@@ -175,6 +170,30 @@
     line-height: var(--filroden-line-height-body);
 }
 
+.rmu-combat-narrator select,
+.rmu-combat-narrator select::picker(select) {
+    appearance: base-select;
+}
+
+.rmu-combat-narrator select::picker(select) {
+    position-area: top;
+    margin-block-end: var(--filroden-space-xs);
+    border: 1px solid var(--filroden-color-text-accent);
+}
+
+.rmu-combat-narrator option {
+    background: var(--filroden-color-bg-medium-solid);
+    color: var(--filroden-color-text-main-solid);
+}
+
+.rmu-combat-narrator option:hover {
+    background: var(--filroden-color-text-accent);
+    color: var(--filroden-color-text-on-accent);
+}
+
+.rmu-combat-narrator option:focus {
+    outline: none;
+}
 
 /* --- CHECKBOXES AND RADIO BUTTONS --- */
 .rmu-combat-narrator-checkbox,
@@ -201,9 +220,8 @@
 
 /* --- ACCESSIBILITY INTERACTIONS --- */
 .rmu-combat-narrator *:focus-visible,
-.rmu-combat-narrator button:focus {
+.rmu-combat-narrator *:focus {
     outline: 2px solid var(--filroden-color-text-accent);
-    border-radius: var(--filroden-radius-small);
 }
 
 .rmu-combat-narrator a:hover {
@@ -222,6 +240,7 @@
 /* Standard two-column wrapper */
 .rmu-combat-narrator .rmu-combat-narrator-layout {
     display: flex;
+    flex-direction: column;
     height: 100%;
     width: 100%;
     overflow: hidden;
@@ -241,12 +260,18 @@
 
 /* Standard Main Content Area */
 .rmu-combat-narrator .rmu-combat-narrator-main {
-    flex: 1;
-    display: flex;
+    display: none;
+    width: 100%;
     flex-direction: column;
     padding: var(--filroden-space-l);
-    overflow-y: auto;
     min-width: 0; /* Prevents flexbox text overflow issues */
+}
+
+.rmu-combat-narrator .rmu-combat-narrator-main.active {
+    display: flex;
+    height: auto; /* Shrink to fit content */
+    max-height: 100%; /* Constrain to parent's max-height */
+    overflow-y: auto; /* Scroll internally if content exceeds max-height */
 }
 
 
@@ -312,12 +337,18 @@
     margin-block-end: var(--filroden-space-s);
 }
 
+/* Push shrink-wrapped inputs to the far edge of the window */
+.rmu-combat-narrator .form-group .form-fields {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
 .rmu-combat-narrator .form-group label {
     margin: 0;
     color: var(--filroden-color-text-main-solid);
     white-space: nowrap;
 }
-
 
 /* --- SEMANTIC TEXT & STATES --- */
 /* Helper text below inputs or headers */
@@ -377,6 +408,33 @@
     border-color: var(--filroden-color-text-accent);
 }
 
+/* ===================================================================
+   --- COMBAT TRACKER SIDEBAR BUTTON ---
+=================================================================== */
+
+.combat-sidebar .rmu-narrator-nav-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: var(--filroden-space-xs);
+    align-items: stretch;
+}
+
+/* Force Foundry's native element to fill the remaining space */
+.combat-sidebar .rmu-narrator-nav-wrapper > :not(.rmu-combat-narrator-sidebar-btn) {
+    flex: 1;
+    margin: 0; /* Override any native margins that might break the flex row */
+}
+
+/* Make custom button a standard square */
+.rmu-combat-narrator-sidebar-btn {
+    flex: 0 0 36px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
 
 /* ===================================================================
    --- MAIN UI ---
@@ -436,4 +494,51 @@
     color: var(--filroden-color-text-main-solid);
     padding: 0;
     overflow: hidden;
+}
+
+.rmu-combat-narrator .rmu-combat-narrator-main-container {
+    flex: 1; /* Take up remaining space */
+    position: relative; /* Contain the absolutely positioned active tabs */
+    min-height: 200px; /* Give it some minimum breathing room */
+    max-height: 70vh; /* Sensible maximum height relative to the user's monitor */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- WIZARD TABS --- */
+.rmu-combat-narrator [data-tab="timeline"] .form-group {
+    grid-template-columns: minmax(0, 1fr) max-content;
+    align-items: start; 
+}
+
+.rmu-combat-narrator .event-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--filroden-space-s);
+    margin-block-start: -0.25rem; 
+}
+
+.rmu-combat-narrator .event-controls label {
+    margin: 0;
+    cursor: pointer;
+}
+
+.rmu-combat-narrator .form-group.stacked {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--filroden-space-xs);
+}
+
+.rmu-combat-narrator .form-group.stacked textarea {
+    width: 100%;
+    resize: vertical;
+}
+
+/* Force helper text to span the full grid width, protecting column ratios */
+.rmu-combat-narrator .form-group .hint,
+.rmu-combat-narrator .form-group .notes,
+.rmu-combat-narrator .form-group p.notes {
+    grid-column: 1 / -1;
+    margin-block-start: 0; /* Tighten up the gap since it's on a new row */
 }

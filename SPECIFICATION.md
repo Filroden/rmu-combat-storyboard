@@ -104,7 +104,7 @@ Instead of manually typing notes, the GM is presented with a streamlined, human-
 - **State Mutation:** Selected items simply have a boolean flag (e.g., `isHighlighted: true`) appended to their data object in memory.
 - **Dense Notation Sieve:** During final export, the Sieve injects the `!` (Hero Moment) flag into the dense notation *only* for the objects containing this boolean state.
 - **LLM Instruction:** The system prompt explicitly instructs the LLM: *"Events marked with a `!` are director-mandated highlights. You must build your panel pacing around these specific moments, giving them visual priority. Use your own judgment to condense the unmarked mechanical events to connect these highlights organically."*
-- **The Copy Handoff:** The Wizard does not export a file. It renders the final, formatted LLM prompt into a read-only, monospaced <textarea> equipped with a native "Copy to Clipboard" button.
+- **The Copy Handoff:** The Wizard does not export a file. It renders the final, formatted LLM prompt into a read-only, monospaced `<textarea>` equipped with a native "Copy to Clipboard" button.
 
 ## 5. Roadmap Options
 
@@ -158,3 +158,37 @@ Once the system developer provides the RMU event hooks, we discard the mock data
 
 - **Combat End Hook:** Listen for the `deleteCombat` hook.
 - **Journal Creation:** Extract the completed flag array, programmatically generate the new `JournalEntry`, and surface the UI prompt asking the GM if they wish to open the Narrator Wizard.
+
+## 7. Hooks
+
+As the system developer published hooks, they will be added here.
+
+Hooks are called from `rmu-journaling.js`.
+
+### 7.1 Attack Hook: `rmu.attack`
+
+> Note: In its initial implementation this does not yet take account of any target `immunities`, `vulnerabilities`, or `proof-against-[type]` properties on the defender token.
+
+```javascript
+@typedef {{
+attackerTokenId: number,
+defenderTokenId: string,
+action: {
+actionType: 'Melee' | 'Ranged' | 'Thrown' | 'Unarmed' | 'AoE',
+attackName: string,
+attackTableName: string,
+},
+attackResult: string,  // such as '22 EK'
+attackRoll: Roll,
+statuses: [
+'Open End Down' | 'Open End Up' | 'Fumble' | 'Hit' | 'Miss' | 'Critical Hit' | 'Natural 66' | 'Breakage'
+],
+location: null | {
+location: string,
+side: string,
+},
+effects: [{ name: string, description: string | null}]
+}}
+```
+
+### 7.2

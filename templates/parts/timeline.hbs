@@ -1,0 +1,54 @@
+<div class="rmu-combat-narrator-main rmu-combat-narrator-window-scrollable {{#if (eq state.activeTab 'timeline')}}active{{/if}}" data-tab="timeline" data-group="primary">    
+    <p class="hint">{{localize "RMU_NARRATOR.Wizard.Labels.Atmosphere"}}</p>
+
+    {{#each groupedTimeline as |events round|}}
+        <fieldset class="rmu-combat-narrator-fieldset">
+            <legend>Round {{round}}</legend>
+            
+            {{#each events as |event|}}
+                <div class="form-group">
+                    
+                    {{!-- The Action/Event Description --}}
+                    <div class="event-details">
+                        {{#if (eq event.type "stageLayout")}}
+                            <span class="rmu-combat-narrator-badge">{{localize "RMU_NARRATOR.Wizard.Labels.StageLayoutUpdate"}}</span>
+                            <div class="rmu-combat-narrator-notes" style="margin-block-start: var(--filroden-space-xs);">
+                                {{#each event.zones as |zone|}}
+                                    <span style="display: block;">
+                                        <strong>[{{zone.name}}]</strong> 
+                                        {{#each zone.actors}}{{.}}{{#unless @last}}, {{/unless}}{{/each}}
+                                    </span>
+                                {{/each}}
+                            </div>
+                        {{else}}
+                            <strong>{{event.source}}</strong> {{event.actionType}} <strong>{{event.target}}</strong> 
+                            <span class="rmu-combat-narrator-notes">({{event.weapon}})</span>
+                            <br>
+                            <span class="hint">{{event.systemNarrative}}</span>
+                        {{/if}}
+                    </div>
+
+                    {{!-- The Interactive Hero Moment Toggle --}}
+                    {{#unless (eq event.type "stageLayout")}}
+                        <div class="event-controls">
+                            <label>{{localize "RMU_NARRATOR.Wizard.Labels.HeroMoment"}}</label>
+                            <input type="checkbox" 
+                                   class="rmu-combat-narrator-checkbox" 
+                                   data-action="toggleHighlight" 
+                                   data-event-id="{{event.id}}"
+                                   {{#if event.isHighlighted}}checked{{/if}}>
+                        </div>
+                    {{/unless}}
+
+                </div>
+                {{#unless @last}}<hr class="rmu-combat-narrator-divider">{{/unless}}
+            {{/each}}
+
+        </fieldset>
+    {{else}}
+        <div class="rmu-combat-narrator-empty">
+            <i class="rmu-combat-narrator-icon example"></i>
+            <p>{{localize "RMU_NARRATOR.Wizard.Labels.NoLogs"}}</p>
+        </div>
+    {{/each}}
+</div>
