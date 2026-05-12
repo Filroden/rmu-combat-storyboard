@@ -13,9 +13,14 @@ export function compileDenseNotation(state) {
 }
 
 function _compileInstructions(state) {
+    // Retrieve the GM's active Foundry language code
+    const targetLang = game.settings.get("core", "language") || "en";
+
     const baseDirectives = `[Director's Instructions]
 Target Length: Exactly ${state.pageTarget} pages.
-Layout Rules: Maximum 3 to 4 panels per page. Do not mention game mechanics, dice, phases, or turns. Present continuous, cinematic action. Maintain spatial continuity based on the Stage Layouts.
+Output Language: You MUST write the final comic script (descriptions, captions, SFX) in the language corresponding to ISO code '${targetLang}'.
+Layout Rules: Maximum 3 to 4 panels per page. Present continuous, cinematic action. Maintain spatial continuity based on the Stage Layouts.
+Script Scrubbing: NEVER print the panel numbers or the raw notation symbols (e.g., ^, v, !!, [!]), game mechanics, dice rolls, phases, or meta-commentary (e.g., 'SFX') in your output text. You must translate these tags invisibly into natural narrative descriptions.
 
 [Notation Legend]
 The combat timeline uses the following shorthand:
@@ -38,23 +43,24 @@ The combat timeline uses the following shorthand:
 2. Environment Lock: Strictly maintain the exact weather, lighting, and background established in the [Campaign Context] across all pages.
 3. Literal Translation: Do not pass game mechanics to the image generator. Translate concepts like 'Scene (Falling)' or 'Breakage' into literal, physical phenomena (e.g., crumbling cliff edges, snapping wood).
 4. Focal Hierarchy (Anti-Bleed): To prevent entity hallucination, limit the prompt to a maximum of TWO highly detailed, named characters per panel (usually the attacker and primary target). For mass brawls or area attacks, render additional combatants purely as shadowy silhouettes, blurred foreground elements, or atmospheric background shapes.
-5. Character Continuity: Use the Cast List for strict visual reference.`;
+5. Character Continuity: Use the Cast List for strict visual reference.
+6. No Text Rule: The image generator must NOT draw any text, panel numbers, character labels, or speech bubbles. The output must be purely visual artwork.`;
 
     const formatMap = {
         text: `[Output Format]
 Write a highly visual comic book script for the GM to read.
-Format each panel with: Size/Camera (e.g., Wide Shot, Extreme Close-Up), Visual Description, and optionally a short Atmospheric Caption (to set the scene/mood) or a visceral SFX. Do not include dialogue bubbles.`,
+Format each panel with: Size/Camera (e.g., Wide Shot, Extreme Close-Up), Visual Description, and optionally a visceral SFX. Do not include dialogue bubbles.`,
 
         image: `[Output Format]
 For EVERY page, you must output two things:
-1. The Script: The narrative description formatted for a comic reader. Format each panel with Size/Camera, Visual Description, and optional Atmospheric Captions or SFX.
+1. The Script: The narrative description formatted for a comic reader. Format each panel with Size/Camera, Visual Description, and optional visceral SFX.
 2. The Image Prompt: A comma-separated prompt specifically optimized for Midjourney/Stable Diffusion, enclosed in a \`\`\` code block. Begin every prompt with "${resolvedArtStyle}, multi-panel comic page, dynamic overlapping gutters, elements breaking panel borders".
 
 ${sharedImageRules}`,
 
         autodraw: `[Output Format & Execution Directive]
 As you write the script, you must automatically generate an image for every single page.
-Format: Write the text script for Page X (formatting panels with Size/Camera, Visual Description, and optional Atmospheric Captions/SFX), then immediately trigger your internal image generator to create a single image containing the 3-4 panels for that page.
+Format: Write the text script for Page X (formatting panels with Size/Camera, Visual Description, and optional visceral SFX), then immediately trigger your internal image generator to create a single image containing the 3-4 panels for that page.
 
 ${sharedImageRules}`,
     };

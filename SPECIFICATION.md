@@ -191,4 +191,35 @@ effects: [{ name: string, description: string | null}]
 }}
 ```
 
-### 7.2
+### 7.2 Spell Casting Roll Hook (`rmu.scr`)
+
+```javascript
+@typedef {{
+attackerTokenId: string,
+defenderEffectsArray: null | [   // populated for utility spells that have effects like heal hp, reduce stun, etc
+{
+id: string,
+effects: [
+{
+name: string,  // you can see 'heal-hits', 'heal-stun', 'heal-fatigue', 'roll-critical'
+description: string | null,
+}]
+}
+],
+action: {
+actionType: 'SCR',
+},
+spell: any,  // Full spell detail
+scrRoll: Roll,
+statuses: [
+'Open End Down' | 'Open End Up' | 'Spellcasting Success' | 'Spellcasting Failure'  | 'Resistible' | 'Utility'
+],
+realms: ['Channeling' | 'Essence' | 'Mentalism' | 'Fear' | 'Physical']
+}}
+```
+
+### 7.3 Resistance Roll Hook (``)
+
+```javascript
+
+```

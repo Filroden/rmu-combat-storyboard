@@ -115,3 +115,59 @@ function _buildNarrative(location, effects, statuses) {
 
     return `${locString}${validDescriptions.join(" ")}`.trim();
 }
+
+export function translateSpellData(spellData) {
+    const attacker = spellData.attackerTokenId === "aog" ? "Environment" : canvas.tokens.get(spellData.attackerTokenId)?.name || "Unknown Caster";
+
+    // Dynamically assign the defender based on the exact AoE property
+    let defender = "Unknown Target";
+    if (spellData.defenderTokenId) {
+        defender = canvas.tokens.get(spellData.defenderTokenId)?.name || "Unknown Target";
+    } else if (spellData.spell?.aoe) {
+        const aoe = spellData.spell.aoe.toLowerCase();
+        defender = aoe === "caster" || aoe === "self" ? attacker : `[AoE: ${spellData.spell.aoe}]`;
+    }
+
+    const spellName = spellData.spell?.name || "Unknown Spell";
+    const spellList = spellData.spell?.spellList || "";
+    const realms = Array.isArray(spellData.realms) ? spellData.realms.join("/") : "Magic";
+
+    // Pass the raw description through as the narrative
+    const rawDescription = spellData.spell?._translatedDescription || spellData.spell?.description || "";
+
+    const spellString = spellList ? `${realms} Spell (${spellList}): ${spellName}` : `${realms} Spell: ${spellName}`;
+
+    return {
+        id: foundry.utils.randomID(),
+        type: "combatAction",
+        round: _calculateRoundPhase(),
+        source: attacker,
+        target: defender,
+        actionType: "=>",
+        weapon: spellString,
+        flair: _mapFlair(spellData.statuses),
+        result: _sanitizeSpellResult(spellData.statuses),
+        effect: "",
+        systemNarrative: rawDescription,
+        isHighlighted: false,
+    };
+}
+
+/**
+ * Extracts the core casting resolution from the statuses array.
+ */
+function _sanitizeSpellResult(statuses) {
+    if (!Array.isArray(statuses)) return "";
+
+    let result = [];
+
+    // Core Resolution
+    if (statuses.includes("Spellcasting Success")) result.push("Success");
+    if (statuses.includes("Spellcasting Failure")) result.push("Failure");
+
+    // Spell Context
+    if (statuses.includes("Resistible")) result.push("(Resistible)");
+    if (statuses.includes("Utility")) result.push("(Utility)");
+
+    return result.join(" ");
+}

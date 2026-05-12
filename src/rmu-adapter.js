@@ -1,4 +1,4 @@
-import { translateAttackData } from "./rmu-utils/translator.js";
+import { translateAttackData, translateSpellData } from "./rmu-utils/translator.js";
 import { generateStageLayout } from "./rmu-utils/spatial.js";
 import { extractCombatRoster } from "./rmu-utils/roster.js";
 import { persistEventToCombat, createJournalLog } from "./rmu-utils/persistence.js";
@@ -8,9 +8,22 @@ import { persistEventToCombat, createJournalLog } from "./rmu-utils/persistence.
  * and persists the standardised events to the active combat log.
  */
 export function registerSystemHooks() {
-    Hooks.on("rmu.attack", _handleAttackHook);
     Hooks.on("updateCombat", _handleCombatUpdate);
     Hooks.on("deleteCombat", _handleCombatEnd);
+    Hooks.on("rmu.attack", _handleAttackHook);
+    Hooks.on("rmu.scr", _handleSpellCastHook);
+}
+
+/**
+ * Temporary handler to log the raw Spell Casting Roll payload for analysis.
+ */
+function _handleSpellCastHook(spellData) {
+    if (!game.combat?.active) return;
+
+    const eventLog = translateSpellData(spellData);
+    if (!eventLog) return;
+
+    persistEventToCombat(eventLog);
 }
 
 /**
