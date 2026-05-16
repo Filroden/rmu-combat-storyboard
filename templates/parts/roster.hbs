@@ -1,0 +1,18 @@
+<div class="rmu-combat-storyboard-main rmu-combat-storyboard-window-scrollable {{#if (eq state.activeTab 'roster')}}active{{/if}}" data-tab="roster" data-group="primary">
+
+    <p class="hint">{{localize "RMU_STORYBOARD.Wizard.Hints.Roster"}}</p>
+
+    {{#each state.roster as |actor|}}
+        <fieldset class="rmu-combat-storyboard-fieldset">
+            <legend>{{actor.name}}</legend>
+            <div class="form-group stacked">
+                <textarea name="roster.{{actor.id}}" rows="2">{{actor.descriptor}}</textarea>
+            </div>
+        </fieldset>
+    {{else}}
+        <div class="rmu-combat-storyboard-empty">
+            <p>{{localize "RMU_STORYBOARD.Wizard.Empty.Roster"}}</p>
+        </div>
+    {{/each}}
+
+</div>

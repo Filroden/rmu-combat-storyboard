@@ -1,4 +1,4 @@
-# RMU Combat Narrator: Master Specification
+# RMU Combat Storyboard: Master Specification
 
 ## 1. Project Intent
 
@@ -85,7 +85,7 @@ The GM interface balances automated prompt generation with lightweight, capped e
 
 #### 4.1. Configuration & Context
 
-- **Log Selection:** The Wizard queries the world for JournalEntry documents flagged by the Narrator module and presents them in a dropdown. Selecting a log loads its timeline.
+- **Log Selection:** The Wizard queries the world for JournalEntry documents flagged by the Storyboard module and presents them in a dropdown. Selecting a log loads its timeline.
 - **Director's Setup:**
   - **Page Count Target:** A numeric input defining the desired script length.
   - **Atmosphere & Context:** A text area for the global primer (e.g., "Dark, gritty, mud-soaked clearing within a dense forest. The party is exhausted and fighting for their lives.").
@@ -104,7 +104,7 @@ Instead of manually typing notes, the GM is presented with a streamlined, human-
 - **State Mutation:** Selected items simply have a boolean flag (e.g., `isHighlighted: true`) appended to their data object in memory.
 - **Dense Notation Sieve:** During final export, the Sieve injects the `!` (Hero Moment) flag into the dense notation *only* for the objects containing this boolean state.
 - **LLM Instruction:** The system prompt explicitly instructs the LLM: *"Events marked with a `!` are director-mandated highlights. You must build your panel pacing around these specific moments, giving them visual priority. Use your own judgment to condense the unmarked mechanical events to connect these highlights organically."*
-- **The Copy Handoff:** The Wizard does not export a file. It renders the final, formatted LLM prompt into a read-only, monospaced <textarea> equipped with a native "Copy to Clipboard" button.
+- **The Copy Handoff:** The Wizard does not export a file. It renders the final, formatted LLM prompt into a read-only, monospaced `<textarea>` equipped with a native "Copy to Clipboard" button.
 
 ## 5. Roadmap Options
 
@@ -147,14 +147,112 @@ Once the system developer provides the RMU event hooks, we discard the mock data
 #### 2.1 The RMU Adapter Class
 
 - **Hook Registration:** Set up listeners for the specific system events (e.g., `rmu.attackRoll`, `rmu.applyDamage`).
-- **Data Translation:** Write the mapping functions that take the proprietary RMU hook arguments and flatten them into our standardised "Narrator JSON" schema.
+- **Data Translation:** Write the mapping functions that take the proprietary RMU hook arguments and flatten them into our standardised "Storyboard JSON" schema.
 
 #### 2.2 Storage in Motion
 
-- **State Management:** Implement the logic to push the translated events into `combat.setFlag('rmu-narrator', 'eventLog', eventData)`.
+- **State Management:** Implement the logic to push the translated events into `combat.setFlag('rmu-storyboard', 'eventLog', eventData)`.
 - **Race Condition Handling:** If necessary, add a lightweight debounce or queuing mechanism to ensure concurrent hooks log sequentially.
 
 #### 2.3 The Lifecycle Handoff
 
 - **Combat End Hook:** Listen for the `deleteCombat` hook.
-- **Journal Creation:** Extract the completed flag array, programmatically generate the new `JournalEntry`, and surface the UI prompt asking the GM if they wish to open the Narrator Wizard.
+- **Journal Creation:** Extract the completed flag array, programmatically generate the new `JournalEntry`, and surface the UI prompt asking the GM if they wish to open the Storyboard Wizard.
+
+## 7. Hooks
+
+As the system developer published hooks, they will be added here.
+
+Hooks are called from `rmu-journaling.js`.
+
+### 7.1 Attack Hook: `rmu.attack`
+
+> Note: In its initial implementation this does not yet take account of any target `immunities`, `vulnerabilities`, or `proof-against-[type]` properties on the defender token.
+
+```javascript
+@typedef {{
+attackerTokenId: number,
+defenderTokenId: string,
+action: {
+  actionType: 'Melee' | 'Ranged' | 'Thrown' | 'Unarmed' | 'AoE',
+  attackName: string,
+  attackTableName: string,
+  chatId: string,
+},
+attackResult: string,  // such as '22 EK'
+attackRoll: Roll,
+statuses: [
+  'Open End Down' | 'Open End Up' | 'Fumble' | 'Hit' | 'Miss' | 'Critical Hit' | 'Natural 66' | 'Breakage'
+],
+location: null | {
+  location: string,
+  side: string,
+},
+effects: [{ name: string, description: string | null}]
+}}
+```
+
+### 7.2 Spell Casting Roll Hook (`rmu.scr`)
+
+```javascript
+@typedef {{
+attackerTokenId: string,
+defenderEffectsArray: null | [   // populated for utility spells that have effects like heal hp, reduce stun, etc
+{
+id: string,
+effects: [
+{
+  name: string,  // you can see 'heal-hits', 'heal-stun', 'heal-fatigue', 'roll-critical'
+  description: string | null,
+}]
+}
+],
+action: {
+  actionType: 'SCR',
+  chatId: string, // of resulting RR chat
+},
+spell: any,  // Full spell detail
+scrRoll: Roll,
+statuses: [
+  'Open End Down' | 'Open End Up' | 'Spellcasting Success' | 'Spellcasting Failure'  | 'Resistible' | 'Utility'
+],
+realms: ['Channeling' | 'Essence' | 'Mentalism' | 'Fear' | 'Physical']
+}}
+```
+
+### 7.3 Resistance Roll Hook (`rmu.rr`)
+
+```javascript
+@typedef {{
+attackerTokenId: string,
+defenderTokenId: string,
+action: {
+  actionType: 'RR',
+  chatId: string,  // of originating SCR chat being resisted
+},
+rrRoll: Roll,
+statuses: [
+  'Open End Down' | 'Open End Up' | 'Resistance Success' | 'Resistance Failure'
+],
+realm: 'Channeling' | 'Essence' | 'Mentalism' | 'Fear' | 'Physical',
+location: null | {
+location: string,
+side: string,
+},
+}}
+```
+
+### 7.4 Apply Damage Hook (`rmu.applyDamage`)
+
+```javascript
+{{
+ attackerTokenId: string,
+ defenderTokenId: string,
+ action: {
+   chatId: string,
+   actionType: 'Damage'
+ },
+ statuses: [],
+ effects: [{ name: string, description: string | null}]
+ }}
+```

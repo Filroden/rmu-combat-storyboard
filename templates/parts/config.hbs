@@ -1,0 +1,52 @@
+<div class="rmu-combat-storyboard-main {{#if (eq state.activeTab 'config')}}active{{/if}}" data-tab="config" data-group="primary">
+    
+    <fieldset class="rmu-combat-storyboard-fieldset">
+        <legend>{{localize "RMU_STORYBOARD.Wizard.Tabs.Config"}}</legend>
+
+        <div class="form-group">
+            <label>{{localize "RMU_STORYBOARD.Wizard.Labels.LogSelection"}}</label>
+            <div class="form-fields">
+                <select name="selectedLogId">
+                    <option value="" disabled {{#unless state.selectedLogId}}selected{{/unless}}>{{localize "RMU_STORYBOARD.Wizard.Placeholders.SelectLog"}}</option>
+                    {{#each availableLogs}}
+                        <option value="{{this.id}}" {{#if (eq ../state.selectedLogId this.id)}}selected{{/if}}>{{this.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <p class="notes">{{localize "RMU_STORYBOARD.Wizard.Hints.LogSelection"}}</p>
+        </div>
+
+        <div class="form-group">
+            <label>{{localize "RMU_STORYBOARD.Wizard.Labels.ArtStyle"}}</label>
+            <div class="form-fields">
+                <select name="artStyle">
+                    <option value="realistic" {{#if (eq state.artStyle "realistic")}}selected{{/if}}>{{localize "RMU_STORYBOARD.Wizard.Styles.Realistic"}}</option>
+                    <option value="gritty" {{#if (eq state.artStyle "gritty")}}selected{{/if}}>{{localize "RMU_STORYBOARD.Wizard.Styles.Gritty"}}</option>
+                    <option value="cartoon" {{#if (eq state.artStyle "cartoon")}}selected{{/if}}>{{localize "RMU_STORYBOARD.Wizard.Styles.Cartoon"}}</option>
+                    <option value="manga" {{#if (eq state.artStyle "manga")}}selected{{/if}}>{{localize "RMU_STORYBOARD.Wizard.Styles.Manga"}}</option>
+                    <option value="pop" {{#if (eq state.artStyle "pop")}}selected{{/if}}>{{localize "RMU_STORYBOARD.Wizard.Styles.Pop"}}</option>
+                    <option value="retro" {{#if (eq state.artStyle "retro")}}selected{{/if}}>{{localize "RMU_STORYBOARD.Wizard.Styles.Retro"}}</option>
+                </select>
+            </div>
+            <p class="notes">{{localize "RMU_STORYBOARD.Wizard.Hints.ArtStyle"}}</p>
+        </div>
+
+        <div class="form-group">
+            <label>{{localize "RMU_STORYBOARD.Wizard.Labels.PageTarget"}}</label>
+            <div class="form-fields">
+                <input type="number" name="pageTarget" value="{{state.pageTarget}}" min="1" max="10" step="1">
+            </div>
+            <p class="notes">{{localize "RMU_STORYBOARD.Wizard.Hints.PageTarget"}}</p>
+        </div>
+    </fieldset>
+
+    <fieldset class="rmu-combat-storyboard-fieldset">
+        <legend>{{localize "RMU_STORYBOARD.Wizard.Labels.CampaignContext"}}</legend>
+        <div class="form-group stacked">
+            <label>{{localize "RMU_STORYBOARD.Wizard.Labels.Atmosphere"}}</label>
+            <textarea name="campaignContext" rows="4" placeholder="{{localize 'RMU_STORYBOARD.Wizard.Placeholders.CampaignContext'}}">{{state.campaignContext}}</textarea>
+            <p class="notes">{{localize "RMU_STORYBOARD.Wizard.Hints.CampaignContext"}}</p>
+        </div>
+    </fieldset>
+
+</div>

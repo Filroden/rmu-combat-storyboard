@@ -1,24 +1,27 @@
 {
-    "id": "rmu-combat-narrator",
-    "title": "RMU Combat Narrator",
-    "description": "A module that logs combat events and then provides the GM with a wizard to generate a prompt for an AI LLM to create a cinematic comic-style script of the combat and then generate the comic book illustrations. The module optimises the combat log for the LLM by removing redundant information and formatting it in a way that is easy for the LLM to understand. The module provides a user interface for the GM to select which combat events to include in the prompt and to customise the prompt before sending it to the LLM.",
-    "version": "1.0.0",
+    "id": "rmu-combat-storyboard",
+    "title": "RMU Combat Storyboard",
+    "description": "An advanced combat logger and AI-prompt generator for RMU. It translates raw combat data into dense, token-efficient prompts. Use the dedicated GM wizard to refine your highlight reel, manage cast descriptions, and generate multi-page comic scripts via external AI tools. Note: This module does not contain any AI functionality itself, but is designed to work with external AI services.",
+    "version": "1.0.0-beta1",
     "compatibility": {
         "minimum": "14",
-        "verified": "14.360",
+        "verified": "14.361",
         "maximum": "14"
     },
     "authors": [{ "name": "Ken Dearman" }],
     "esmodules": ["main.js"],
-    "styles": ["filroden-theme.css", "rmu-combat-narrator.css"],
+    "styles": ["styles/filroden-theme.css", "styles/rmu-combat-storyboard.css"],
+    "relationships": {
+        "systems": [{ "id": "rmu", "type": "system", "compatibility": { "minimum": "1.2.27" } }]
+    },
     "languages": [
         { "lang": "en", "name": "English", "path": "languages/en.json" },
         { "lang": "en-GB", "name": "English (UK)", "path": "languages/en-gb.json" }
     ],
-    "url": "https://github.com/Filroden/rmu-combat-narrator",
-    "manifest": "https://github.com/Filroden/rmu-combat-narrator/releases/latest/download/module.json",
-    "download": "https://github.com/Filroden/rmu-combat-narrator/releases/download/v1.0.0/rmu-combat-narrator.zip",
-    "bugs": "https://github.com/Filroden/rmu-combat-narrator/issues",
-    "readme": "https://github.com/Filroden/rmu-combat-narrator/blob/main/README.md",
+    "url": "https://github.com/Filroden/rmu-combat-storyboard",
+    "manifest": "https://github.com/Filroden/rmu-combat-storyboard/releases/latest/download/module.json",
+    "download": "https://github.com/Filroden/rmu-combat-storyboard/releases/download/v1.0.0-beta1/rmu-combat-storyboard.zip",
+    "bugs": "https://github.com/Filroden/rmu-combat-storyboard/issues",
+    "readme": "https://github.com/Filroden/rmu-combat-storyboard/blob/main/README.md",
     "license": "https://mit-license.org/"
 }

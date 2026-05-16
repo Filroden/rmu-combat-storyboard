@@ -1,0 +1,126 @@
+<div class="rmu-combat-storyboard-main rmu-combat-storyboard-tab-fixed-footer {{#if (eq state.activeTab 'timeline')}}active{{/if}}" data-tab="timeline" data-group="primary">
+
+    <div class="rmu-combat-storyboard-scroll-area rmu-combat-storyboard-window-scrollable">
+        {{!-- Outer Loop: Iterate through the groups (Rounds) --}}
+        {{#each groupedTimeline as |events round|}}
+            <fieldset class="rmu-combat-storyboard-fieldset">
+                <legend>Round {{round}}</legend>
+                
+                {{!-- Inner Loop: Iterate through the actions in that round --}}
+                {{#each events as |event|}}
+                    <div class="form-group">
+                        
+                        {{!-- The Action/Event Description --}}
+                        <div class="event-details">
+                            {{#if (eq event.type "stageLayout")}}
+                                <span class="rmu-combat-storyboard-badge">{{localize "RMU_STORYBOARD.Wizard.Labels.StageLayoutUpdate"}}</span>
+                                
+                                <div class="rmu-combat-storyboard-notes stage-layout-notes">
+                                    {{#each event.zones as |zone|}}
+                                        <div class="rmu-combat-storyboard-zone-group">
+                                            <strong>[{{zone.name}}]</strong> 
+                                            <ul class="rmu-combat-storyboard-list">
+                                                {{#each zone.actors}}
+                                                    <li>{{.}}</li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+                                    {{/each}}
+                                </div>
+                            {{else}}
+                            <strong>{{event.source}}</strong> {{event.actionType}} <strong>{{event.target}}</strong> 
+                                <span class="rmu-combat-storyboard-notes">using {{event.weapon}}</span>
+                                
+                                {{!-- Inject the Outcome, Flair, and Effects ONLY for Single Targets --}}
+                                {{#unless event.isAoE}}
+                                    {{#if event.result}}
+                                        <span class="rmu-combat-storyboard-event-result">
+                                            {{#if event.flair}}{{event.flair}} {{/if}}{{event.result}}
+                                        </span>
+                                    {{/if}}
+                                    
+                                    {{#if event.effect}}
+                                        <span class="rmu-combat-storyboard-notes">({{event.effect}})</span>
+                                    {{/if}}
+                                {{/unless}}
+
+                                {{!-- Render Consolidated Area Impacts --}}
+                                {{#if event.isAoE}}
+                                    <div class="rmu-combat-storyboard-notes">
+                                        <strong>Impacts:</strong> 
+                                        <ul class="rmu-combat-storyboard-list">
+                                            {{#each event.aoeTargets as |t|}}
+                                                <li>
+                                                    <strong>{{t.target}}:</strong> 
+                                                    {{#if t.result}}
+                                                        <span class="rmu-combat-storyboard-event-result">
+                                                            {{#if t.flair}}{{t.flair}} {{/if}}{{t.result}}
+                                                        </span>
+                                                    {{/if}}
+                                                    {{#if t.effect}} ({{t.effect}}){{/if}}{{#if t.systemNarrative}} {{t.systemNarrative}}{{/if}}
+                                                </li>
+                                            {{/each}}
+                                        </ul>
+                                    </div>
+                                {{/if}}
+                                
+                                {{!-- Render Consolidated Resistance Saves --}}
+                                {{#if event.resistances}}
+                                    <div class="rmu-combat-storyboard-notes">
+                                        <strong>Saves:</strong> 
+                                        <ul class="rmu-combat-storyboard-list">
+                                            {{#each event.resistances as |rr|}}
+                                                <li>
+                                                    <strong>{{rr.source}}:</strong> 
+                                                    {{#if rr.result}}
+                                                        <span class="rmu-combat-storyboard-event-result">
+                                                            {{#if rr.flair}}{{rr.flair}} {{/if}}{{rr.result}}
+                                                        </span>
+                                                    {{/if}}
+                                                    {{#if rr.effect}} ({{rr.effect}}){{/if}}{{#if rr.systemNarrative}} {{rr.systemNarrative}}{{/if}}
+                                                </li>
+                                            {{/each}}
+                                        </ul>
+                                    </div>
+                                {{/if}}
+
+                                {{#if event.systemNarrative}}
+                                    <br>
+                                    <span class="hint">{{event.systemNarrative}}</span>
+                                {{/if}}
+                            {{/if}}
+                        </div>
+
+                        {{!-- The Interactive Hero Moment Toggle --}}
+                        {{#unless (eq event.type "stageLayout")}}
+                            <div class="event-controls">
+                                <label>{{localize "RMU_STORYBOARD.Wizard.Labels.HeroMoment"}}</label>
+                                <input type="checkbox" 
+                                    class="rmu-combat-storyboard-checkbox" 
+                                    data-action="toggleHighlight" 
+                                    data-event-id="{{event.id}}"
+                                    {{#if event.isHighlighted}}checked{{/if}}>
+                            </div>
+                        {{/unless}}
+
+                    </div>
+                    {{#unless @last}}<hr class="rmu-combat-storyboard-divider">{{/unless}}
+                {{/each}}
+
+            </fieldset>
+
+        {{else}}
+            <div class="rmu-combat-storyboard-empty">
+                <i class="rmu-combat-storyboard-icon example"></i>
+                <p>{{localize "RMU_STORYBOARD.Wizard.Labels.NoLogs"}}</p>
+            </div>
+        {{/each}}
+    </div>
+
+    <div class="rmu-combat-storyboard-timeline-footer">
+        <button type="button" class="rmu-combat-storyboard-btn primary" data-action="downloadLog">
+            <i class="rmu-combat-storyboard-icon download"></i> {{localize "RMU_STORYBOARD.Wizard.Buttons.DownloadLog"}}
+        </button>
+    </div>
+
+</div>

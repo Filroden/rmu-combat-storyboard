@@ -1,0 +1,26 @@
+<div class="rmu-combat-storyboard-main {{#if (eq state.activeTab 'export')}}active{{/if}}" data-tab="export" data-group="primary">
+    
+    <fieldset class="rmu-combat-storyboard-fieldset">
+        <legend>{{localize "RMU_STORYBOARD.Wizard.Tabs.Export"}}</legend>
+        <p class="hint">{{localize "RMU_STORYBOARD.Wizard.Hints.Export"}}</p>
+        
+        <div class="form-group stacked">
+            <textarea name="compiledPrompt" rows="14" readonly>{{compiledPrompt}}</textarea>
+        </div>
+
+        <button type="button" class="rmu-combat-storyboard-btn primary" data-action="copyPrompt">
+            {{localize "RMU_STORYBOARD.Wizard.Buttons.Copy"}}
+        </button>
+    </fieldset>
+
+    {{!-- LLM Workflow Instructions --}}
+    <div class="rmu-combat-storyboard-instructions">
+        <span class="rmu-combat-storyboard-badge">{{localize "RMU_STORYBOARD.Wizard.Labels.HowToUse"}}</span>
+        <ol class="rmu-combat-storyboard-list">
+            <li><strong>{{localize "RMU_STORYBOARD.Wizard.HowToUse.Step1"}}</strong> {{localize "RMU_STORYBOARD.Wizard.HowToUse.Step1Instruction"}}</li>
+            <li><strong>{{localize "RMU_STORYBOARD.Wizard.HowToUse.Step2"}}</strong> {{localize "RMU_STORYBOARD.Wizard.HowToUse.Step2Instruction"}}</li>
+            <li><strong>{{localize "RMU_STORYBOARD.Wizard.HowToUse.Step3"}}</strong> {{localize "RMU_STORYBOARD.Wizard.HowToUse.Step3Instruction"}}</li>
+        </ol>
+    </div>
+
+</div>
