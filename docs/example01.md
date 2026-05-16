@@ -185,7 +185,7 @@ CRITICAL RULES: Do NOT draw any text, speech bubbles, sound effects, or panel nu
 
 The text AI also generated code blocks containing highly specific image prompts. We copy these blocks **one by one** and paste them into an image-generation AI (e.g., Midjourney, DALL-E 3, or Gemini) to create the final comic panels.
 
-*These examples were from a paid subscription to Gemini Pro.*
+*These examples were from a free subscription to Copilot.*
 
 ### Page 1
 
