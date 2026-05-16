@@ -12,7 +12,8 @@ After the combat concludes, we open the **Storyboard Wizard** from the Combat Tr
 * **Target Pages:** 3
 * **Campaign Context:** A small island dominated by a lighthouse overlooking a small cliff. To its side is a slope down to the beach and a small jetty. It is noon, the weather is clear and warm.
 
-![Wizard Configuration](../[PATH_TO_YOUR_WIZARD_SCREENSHOT].png)
+![Wizard Configuration](https://github.com/Filroden/rmu-combat-storyboard/blob/main/screenshots/configuration_tab.png)
+
 *The GM reviews the Cast & Roster, ensuring mechanical names are replaced with physical descriptions for the AI.*
 
 ## 2. The exported prompt
@@ -189,12 +190,12 @@ The text AI also generated code blocks containing highly specific image prompts.
 
 ### Page 1
 
-![Page 1 Comic Art](https://github.com/Filroden/rmu-combat-storyboard/screenshots/Example01_Page_1_Comic_Art.png)
+![Page 1 Comic Art](https://github.com/Filroden/rmu-combat-storyboard/blob/main/screenshots/Example01_Page_1_Comic_Art.png)
 
 ### Page 2
 
-![Page 2 Comic Art](https://github.com/Filroden/rmu-combat-storyboard/screenshots/Example01_Page_2_Comic_Art.png)
+![Page 2 Comic Art](https://github.com/Filroden/rmu-combat-storyboard/blob/main/screenshots/Example01_Page_2_Comic_Art.png)
 
 ### Page 3
 
-![Page 3 Comic Art](https://github.com/Filroden/rmu-combat-storyboard/screenshots/Example01_Page_3_Comic_Art.png)
+![Page 3 Comic Art](https://github.com/Filroden/rmu-combat-storyboard/blob/main/screenshots/Example01_Page_3_Comic_Art.png)
