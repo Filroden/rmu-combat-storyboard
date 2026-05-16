@@ -33,15 +33,24 @@ The result? Raw combat logs are transformed into cinematic, multi-page comic boo
     - Choose an **Art Style** (e.g., Dark & Gritty, 1980s Retro, Manga).
     - Set a **Target Page Count** to dictate the length of the final comic.
     - Provide a brief **Campaign Context** (e.g., "A rainy night in a muddy forest clearing") to ground the AI.
+
+   ![Configuration Tab](https://github.com/Filroden/rmu-combat-storyboard/screenshots/configuration_tab.png)
+
 4. **Cast & Roster Tab:** Review the combatants. Replace their mechanical names with physical descriptions (e.g., "A small halfling wearing soft leather"). This allows the AI to visualise the combatants better.
 
    > **Note**:  If the combatant is a fantastical or unusual creature or race, you should provide a short description, e.g., "A medium sibbicai ranger. Sibbicai have the head of a jackal on humanoid shaped bodies. Their skin is covered in smooth, oily black short hair coats."
+
+   ![Cast & Roster Tab](https://github.com/Filroden/rmu-combat-storyboard/screenshots/roster_tab.png)
 
 5. **Highlight Reel Tab:** Review the timeline of the battle. Check the **Hero Moment** box next to the most important actions to guarantee they receive a massive spotlight panel in the final script. You can also download a human-readable text file of the log from here.
 
    > **Note**: Use the **Hero Moment** boxes sparingly to avoid confusing the AI. Ideally, you should select one hero moment for each page and avoid choosing them too close together in the sequence of events.
 
+   ![Highlight Reel Tab](https://github.com/Filroden/rmu-combat-storyboard/screenshots/highlight_reel_tab.png)
+
 6. **Export Prompt Tab:** The module compiles your entire curated battle into a dense, token-optimised code block. Click **Copy to Clipboard**.
+
+   ![Export Prompt Tab](https://github.com/Filroden/rmu-combat-storyboard/screenshots/export_prompt_tab.png)
 
 ## How to use (external LLM workflow)
 
