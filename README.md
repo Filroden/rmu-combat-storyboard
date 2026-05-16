@@ -17,7 +17,7 @@ Rolemaster combats are famously detailed, featuring highly tactical phases, spec
 
 The result? Raw combat logs are transformed into cinematic, multi-page comic book scripts and detailed image generation prompts, allowing you to immortalise your group's most epic battles.
 
-See an end-to-end example here: [Example 1](docs/Example01.md)
+See an end-to-end example here: [Example 1](docs/example01.md)
 
 ## Key features
 
