@@ -82,3 +82,10 @@ The RMU Combat Storyboard is fully translation-ready and supports RTL layouts. H
 
 - **The System Instructions are always in English.** To ensure the LLM strictly follows complex logical constraints (like preventing meta-commentary, parsing system mechanics, and formatting image prompts), the core rules are hardcoded in English, which matches the bulk of the LLM's training data.
 - **The Output will be in your language.** The prompt automatically detects your Foundry VTT language setting and issues an instruction to the AI. The LLM will read your localised Campaign Context, process the English rules, and output the final cinematic comic script in your chosen language.
+
+## Roadmap Ideas (no promises)
+
+- Convert token dimensions into a size descriptor in the roster description, e.g., "medium-sized"
+- Detect best armour type being worn and convert it to a simple, e.g., ", wearing soft leather armor" in the roster description
+- Add a "Has Shield" checkbox and convert it to a simple, e.g., ", carrying a shield"
+- Add an Advanced option to include filenames for the roster actors and change the resulting prompt to reference the filenames, so you can attach portrait images to your image generation prompts to improve the quality
