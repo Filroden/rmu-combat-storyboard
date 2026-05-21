@@ -109,7 +109,6 @@ export class RMUStoryboardWizard extends HandlebarsApplicationMixin(ApplicationV
 
         // State Mutation: Safe to proceed (either adding within limits, or removing)
         this.#state.timeline[eventIndex].isHighlighted = !isCurrentlySelected;
-        this.render({ parts: ["timeline"] });
     }
 
     /**
