@@ -85,7 +85,11 @@ The RMU Combat Storyboard is fully translation-ready and supports RTL layouts. H
 
 ## Roadmap Ideas (no promises)
 
-- Convert token dimensions into a size descriptor in the roster description, e.g., "medium-sized"
-- Detect best armour type being worn and convert it to a simple, e.g., ", wearing soft leather armor" in the roster description
-- Add a "Has Shield" checkbox and convert it to a simple, e.g., ", carrying a shield"
-- Add an Advanced option to include filenames for the roster actors and change the resulting prompt to reference the filenames, so you can attach portrait images to your image generation prompts to improve the quality
+### Combat logging features
+
+- **Combat statistics:** damage dealt, best critical, most fumbles, etc
+- **Dice roll statistics:** % Open ended up/down, % natural 66, highest/lowest open ended roll, mean raw roll value, etc
+
+### AI comic features
+
+- **Advanced portrait option:** Include filenames for the roster actors and change the resulting prompt to reference the filenames, so you can attach portrait images to your image generation prompts to improve the quality
