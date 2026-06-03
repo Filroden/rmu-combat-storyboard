@@ -38,15 +38,12 @@ export async function createJournalLog(eventLog, roster) {
         folder = await Folder.create({
             name: folderName,
             type: "JournalEntry",
-            color: "#2b2b2b",
+            color: "#605320",
         });
     }
 
-    const dateStr = new Date().toLocaleString("en-GB");
-    const journalName = `Encounter: ${dateStr}`;
-
     await JournalEntry.create({
-        name: journalName,
+        name: _generateSortableName(),
         folder: folder.id,
         pages: [
             {
@@ -64,4 +61,25 @@ export async function createJournalLog(eventLog, roster) {
     });
 
     ui.notifications.info(game.i18n.localize("RMU_STORYBOARD.Wizard.Notifications.LogSaved"));
+}
+
+/**
+ * Generates a deterministically sortable timestamp.
+ * Output: "Encounter: YYYY/MM/DD, HH:MM:SS"
+ */
+function _generateSortableName() {
+    const now = new Date();
+
+    // Helper to ensure single digits are padded with a leading zero (e.g., "05" instead of "5")
+    const pad = (n) => n.toString().padStart(2, "0");
+
+    const year = now.getFullYear();
+    const month = pad(now.getMonth() + 1);
+    const day = pad(now.getDate());
+
+    const hours = pad(now.getHours());
+    const minutes = pad(now.getMinutes());
+    const seconds = pad(now.getSeconds());
+
+    return `Encounter: ${year}/${month}/${day}, ${hours}:${minutes}:${seconds}`;
 }

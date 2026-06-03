@@ -1,4 +1,4 @@
-# RMU Combat Storyboard
+# Combat Storyboard for RMU
 
 ![Latest Version](https://img.shields.io/badge/Version-1.0.0-blue)
 ![Foundry Version](https://img.shields.io/badge/Foundry_VTT-v14_%7C_v14-orange)
@@ -9,13 +9,13 @@
 ![Last Commit](https://img.shields.io/github/last-commit/Filroden/rmu-combat-storyboard)
 ![Issues](https://img.shields.io/github/issues/Filroden/rmu-combat-storyboard)
 
-## Welcome to RMU Combat Storyboard
+## Welcome to Combat Storyboard for RMU
 
 This module is designed exclusively for the Rolemaster Unified (RMU) system.
 
-Rolemaster combats are famously detailed, featuring highly tactical phases, specific hit locations, and devastating critical injuries. The **RMU Combat Storyboard** is a GM utility that captures this rich mechanical data and translates it into a highly compressed, token-efficient prompt designed for external Large Language Models (LLMs like ChatGPT, Gemini, or Claude).
+Rolemaster combats are famously detailed, featuring highly tactical phases, specific hit locations, and devastating critical injuries. The **Combat Storyboard for RMU** is a GM utility that captures this rich mechanical data and translates it a human-readable report and into a highly compressed, token-efficient prompt designed for external Large Language Models (LLMs like ChatGPT, Gemini, or Claude).
 
-The result? Raw combat logs are transformed into cinematic, multi-page comic book scripts and detailed image generation prompts, allowing you to immortalise your group's most epic battles.
+The result? Raw combat logs can be transformed into cinematic, multi-page comic book scripts and detailed image generation prompts, allowing you to immortalise your group's most epic battles.
 
 See an end-to-end example here: [Example 1](docs/example01.md)
 
@@ -78,10 +78,18 @@ If the combat was truly epic, consider commissioning hand-drawn images. The Foun
 
 ## Important note on localisation
 
-The RMU Combat Storyboard is fully translation-ready and supports RTL layouts. However, when working with the exported AI prompt, you will notice a specific architectural design: **Mixed-Language Prompting.**
+The Combat Storyboard for RMU is fully translation-ready and supports RTL layouts. However, when working with the exported AI prompt, you will notice a specific architectural design: **Mixed-Language Prompting.**
 
 - **The System Instructions are always in English.** To ensure the LLM strictly follows complex logical constraints (like preventing meta-commentary, parsing system mechanics, and formatting image prompts), the core rules are hardcoded in English, which matches the bulk of the LLM's training data.
 - **The Output will be in your language.** The prompt automatically detects your Foundry VTT language setting and issues an instruction to the AI. The LLM will read your localised Campaign Context, process the English rules, and output the final cinematic comic script in your chosen language.
+
+## Disclaimer and IP Notice
+
+The Combat Storyboard for RMU module is an unofficial, community-developed tool designed to enhance the Rolemaster Unified experience on Foundry Virtual Tabletop.
+
+This module is completely independent and is not affiliated with, endorsed, sponsored, or approved by Iron Crown Enterprises (ICE). "Rolemaster", "Rolemaster Unified", and the "RMU" acronym are trademarks of Iron Crown Enterprises.
+
+This project does not distribute any proprietary text, artwork, or core rulebook content belonging to ICE. It functions strictly as a mechanical, workflow, and user interface enhancement for the official RMU system on Foundry VTT. Any use of specific system terminology or mechanical values is for functional compatibility purposes only.
 
 ## Roadmap Ideas (no promises)
 

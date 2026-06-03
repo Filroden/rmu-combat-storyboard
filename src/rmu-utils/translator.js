@@ -259,14 +259,20 @@ export function translateApplyDamageData(damageData) {
         target: defender,
         flair: _mapFlair(damageData.statuses),
         effect: _mapEffects(damageData.effects, []),
-        systemNarrative: _buildDamageNarrative(damageData.effects),
+        systemNarrative: _buildDamageNarrative(damageData.effects, damageData.health),
     };
 }
 
 /**
- * Formats specific narrative strings purely from the applied effects.
+ * Formats specific narrative strings purely from the applied effects and health state.
  */
-function _buildDamageNarrative(effects) {
+function _buildDamageNarrative(effects, health) {
     const validDescriptions = Array.isArray(effects) ? [...new Set(effects.map((e) => e.description).filter(Boolean))] : [];
+
+    // Guard clause to ensure the health payload exists and HP has dropped to zero or below
+    if (health?.hp?.current !== undefined && health.hp.current <= 0) {
+        validDescriptions.push("Target is incapacitated.");
+    }
+
     return validDescriptions.join(" ").trim();
 }
