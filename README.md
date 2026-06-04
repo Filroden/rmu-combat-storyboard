@@ -13,7 +13,7 @@
 
 This module is designed exclusively for the Rolemaster Unified (RMU) system.
 
-Rolemaster combats are famously detailed, featuring highly tactical phases, specific hit locations, and devastating critical injuries. The **Combat Storyboard for RMU** is a GM utility that captures this rich mechanical data and translates it a human-readable report and into a highly compressed, token-efficient prompt designed for external Large Language Models (LLMs like ChatGPT, Gemini, or Claude).
+Rolemaster combats are famously detailed, featuring highly tactical phases, specific hit locations, and devastating critical injuries. The **Combat Storyboard for RMU** is a GM utility that captures this rich mechanical data and translates it into a human-readable report and a highly compressed, token-efficient prompt designed for external Large Language Models (LLMs like ChatGPT, Gemini, or Claude).
 
 The result? Raw combat logs can be transformed into cinematic, multi-page comic book scripts and detailed image generation prompts, allowing you to immortalise your group's most epic battles.
 
