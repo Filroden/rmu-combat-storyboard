@@ -100,4 +100,5 @@ This project does not distribute any proprietary text, artwork, or core rulebook
 
 ### AI comic features
 
+- **Captions:** Currently the prompt explicitly prevents captions, SFX or speech bubbles being included in any generated image as the quality of these was not high. I will continue to experiment and add in an option to include these. 
 - **Advanced portrait option:** Include filenames for the roster actors and change the resulting prompt to reference the filenames, so you can attach portrait images to your image generation prompts to improve the quality
