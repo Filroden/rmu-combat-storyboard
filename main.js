@@ -6,7 +6,7 @@ import { registerSystemHooks } from "./src/rmu-adapter.js";
 
 // Initialisation hook
 Hooks.once("init", () => {
-    console.log("RMU Combat Storyboard | Initialising Sieve and Wizard UI");
+    console.log("Combat Storyboard for RMU | Initialising Sieve and Wizard UI");
 
     // Register UI injections
     registerSidebarInjection();

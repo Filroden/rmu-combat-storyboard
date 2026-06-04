@@ -1,5 +1,5 @@
 /**
- * The core ApplicationV2 interface for the RMU Combat Storyboard.
+ * The core ApplicationV2 interface for the Combat Storyboard for RMU.
  */
 import { compileDenseNotation, buildHumanReadableTimeline, compileHumanReadableLog } from "./compiler.js";
 
@@ -109,7 +109,6 @@ export class RMUStoryboardWizard extends HandlebarsApplicationMixin(ApplicationV
 
         // State Mutation: Safe to proceed (either adding within limits, or removing)
         this.#state.timeline[eventIndex].isHighlighted = !isCurrentlySelected;
-        this.render({ parts: ["timeline"] });
     }
 
     /**
@@ -146,7 +145,7 @@ export class RMUStoryboardWizard extends HandlebarsApplicationMixin(ApplicationV
             ui.notifications.info(game.i18n.localize("RMU_STORYBOARD.Wizard.Notifications.Copied"));
         } catch (err) {
             ui.notifications.error(game.i18n.localize("RMU_STORYBOARD.Wizard.Notifications.CopyFailed"));
-            console.error("RMU Combat Storyboard | Clipboard write failed:", err);
+            console.error("Combat Storyboard for RMU | Clipboard write failed:", err);
         }
     }
 

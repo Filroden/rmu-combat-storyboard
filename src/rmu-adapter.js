@@ -64,11 +64,11 @@ async function _handleCombatEnd(combat, options, userId) {
     const eventLog = combat.getFlag("rmu-combat-storyboard", "eventLog");
 
     // Diagnostic Probe: Check the console (F12) to see exactly what data we have
-    console.log("RMU Combat storyboard | Ending Combat. Log Data:", eventLog);
+    console.log("Combat Storyboard for RMU | Ending Combat. Log Data:", eventLog);
 
     // Guard against empty combats
     if (!eventLog || eventLog.length === 0) {
-        console.log("RMU Combat storyboard | Combat ended, but no events were logged. Bypassing save dialog.");
+        console.log("Combat Storyboard for RMU | Combat ended, but no events were logged. Bypassing save dialog.");
         return;
     }
 

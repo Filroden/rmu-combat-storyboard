@@ -1,5 +1,5 @@
 /**
- * Core Sieve compiler for the RMU Combat storyboard.
+ * Core Sieve compiler for the Combat Storyboard for RMU.
  * Transforms application state into the final Dense Notation prompt.
  */
 
