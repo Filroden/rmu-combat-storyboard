@@ -589,7 +589,7 @@
 .rmu-combat-storyboard .form-group .notes,
 .rmu-combat-storyboard .form-group p.notes {
     grid-column: 1 / -1;
-    margin-block-start: 0; /* Tighten up the gap since it's on a new row */
+    margin: var(--filroden-space-xs) 0;
 }
 
 /* --- FIXED FOOTER TAB LAYOUT --- */

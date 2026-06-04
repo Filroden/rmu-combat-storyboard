@@ -87,6 +87,12 @@ function _compileTimeline(timeline) {
     const consolidatedTimeline = consolidateEvents(timeline);
     const eventLines = consolidatedTimeline.map(_compileEvent);
 
+    // Provide a fallback just in case the localization key is missing
+    const combatEnds = game.i18n.has("RMU_STORYBOARD.Wizard.Log.CombatEnds") ? game.i18n.localize("RMU_STORYBOARD.Wizard.Log.CombatEnds") : "Combat Ends";
+
+    // Append the tag in standard Dense Notation bracket format
+    eventLines.push(`[${combatEnds.toUpperCase()}]`);
+
     return `[Combat Timeline]\n${eventLines.join("\n")}`;
 }
 
@@ -329,22 +335,34 @@ function _translateFlair(flairStr) {
 }
 
 /**
- * Compiles a human-readable plain text log for standard GM reference.
+ * Compiles a human-readable plain text log for standard GM reference,
+ * now including the Campaign Context and Cast Roster.
  */
 export function compileHumanReadableLog(state) {
     const hrTimeline = buildHumanReadableTimeline(state.timeline);
     const rounds = _groupEventsByRound(hrTimeline);
-    const lines = [`--- ${game.i18n.localize("RMU_STORYBOARD.Wizard.Log.Header")} ---\n`];
 
+    // 1. Initialize the array with all context, roster, and header blocks simultaneously
+    const lines = [
+        ..._buildHumanReadableContextBlock(state.campaignContext),
+        ..._buildHumanReadableRosterBlock(state.roster),
+        `--- ${game.i18n.localize("RMU_STORYBOARD.Wizard.Log.Header").toUpperCase()} ---\n`,
+    ];
+
+    // 2. Iterate through the rounds
     for (const [round, events] of Object.entries(rounds)) {
-        lines.push(`== ${game.i18n.format("RMU_STORYBOARD.Wizard.Log.Round", { round })} ==`);
-
-        for (const event of events) {
-            lines.push(..._compileHumanReadableEvent(event));
-        }
-
-        lines.push(""); // Empty line between rounds
+        // Consolidate the round header, all compiled events, and the spacing into a single push
+        lines.push(
+            `== ${game.i18n.format("RMU_STORYBOARD.Wizard.Log.Round", { round })} ==`,
+            ...events.flatMap((event) => _compileHumanReadableEvent(event)),
+            "", // Empty line between rounds
+        );
     }
+
+    // 3. Append the final Combat Ends marker
+    const combatEnds = game.i18n.has("RMU_STORYBOARD.Wizard.Log.CombatEnds") ? game.i18n.localize("RMU_STORYBOARD.Wizard.Log.CombatEnds").toUpperCase() : "COMBAT ENDS";
+
+    lines.push(`== ${combatEnds} ==`);
 
     return lines.join("\n").trim();
 }
@@ -432,4 +450,33 @@ function _buildOutcomeString(flair, result, effect, narrative) {
     const formattedNarrative = narrative ? ` ${narrative}` : "";
 
     return `${formattedFlair}${result || ""}${formattedEffect}${formattedNarrative}`.trim();
+}
+
+/**
+ * Helper: Formats the campaign context for the text export.
+ */
+function _buildHumanReadableContextBlock(context) {
+    if (!context?.trim()) return [];
+
+    const header = game.i18n.localize("RMU_STORYBOARD.Wizard.Labels.CampaignContext").toUpperCase();
+
+    return [`--- ${header} ---`, context.trim(), "", ""];
+}
+
+/**
+ * Helper: Formats the active participants for the text export.
+ */
+function _buildHumanReadableRosterBlock(roster) {
+    if (!roster || roster.length === 0) return [];
+
+    const header = game.i18n.localize("RMU_STORYBOARD.Wizard.Labels.Roster").toUpperCase();
+    const fallback = game.i18n.localize("RMU_STORYBOARD.Wizard.Empty.Roster");
+    const lines = [`--- ${header} ---`];
+
+    roster.forEach((actor) => {
+        lines.push(actor.name, `> ${actor.descriptor || fallback}`, "");
+    });
+
+    lines.push(""); // Additional spacing before timeline
+    return lines;
 }

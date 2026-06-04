@@ -33,14 +33,16 @@ See an end-to-end example here: [Example 1](docs/example01.md)
 
 1. **Run Your Combat:** Play out your RMU encounter normally. When the combat ends, you (GMs only) will be prompted to save the raw event log to a Journal Entry.
 2. **Open the Wizard:** Click the Storyboard Wizard icon (the crossed swords) located at the top of the Combat Tracker sidebar.
-3. **Configuration Tab:** * Select your saved combat log from the dropdown menu.
+3. **Configuration Tab:**
+    - Select your saved combat log from the dropdown menu.
     - Choose an **Art Style** (e.g., Dark & Gritty, 1980s Retro, Manga).
     - Set a **Target Page Count** to dictate the length of the final comic.
-    - Provide a brief **Campaign Context** (e.g., "A rainy night in a muddy forest clearing") to ground the AI.
 
    ![Configuration Tab](https://github.com/Filroden/rmu-combat-storyboard/blob/main/screenshots/configuration_tab.png)
 
-4. **Cast & Roster Tab:** Review the combatants. Replace their mechanical names with physical descriptions (e.g., "A small halfling wearing soft leather"). This allows the AI to visualise the combatants better.
+4. **Campaign & Roster Tab:**
+    - Provide a brief **Campaign Context** (e.g., "A rainy night in a muddy forest clearing") to ground the AI.
+    - Review the combatants. Replace their mechanical names with physical descriptions (e.g., "A small halfling wearing soft leather"). This allows the AI to visualise the combatants better.
 
    > **Note**:  If the combatant is a fantastical or unusual creature or race, you should provide a short description, e.g., "A medium sibbicai ranger. Sibbicai have the head of a jackal on humanoid shaped bodies. Their skin is covered in smooth, oily black short hair coats."
 
@@ -100,5 +102,5 @@ This project does not distribute any proprietary text, artwork, or core rulebook
 
 ### AI comic features
 
-- **Captions:** Currently the prompt explicitly prevents captions, SFX or speech bubbles being included in any generated image as the quality of these was not high. I will continue to experiment and add in an option to include these. 
+- **Captions:** Currently the prompt explicitly prevents captions, SFX or speech bubbles being included in any generated image as the quality of these was not high. I will continue to experiment and add in an option to include these.
 - **Advanced portrait option:** Include filenames for the roster actors and change the resulting prompt to reference the filenames, so you can attach portrait images to your image generation prompts to improve the quality
