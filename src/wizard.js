@@ -1,5 +1,5 @@
 /**
- * The core ApplicationV2 interface for the Combat Storyboard for RMU.
+ * The core interface for the Combat Storyboard for RMU.
  */
 import { compileDenseNotation, buildHumanReadableTimeline, compileHumanReadableLog } from "./compiler.js";
 
@@ -96,7 +96,7 @@ export class RMUStoryboardWizard extends HandlebarsApplicationMixin(ApplicationV
 
         const isCurrentlySelected = this.#state.timeline[eventIndex].isHighlighted;
 
-        // Guard Clause: Only block if they are trying to add a new highlight
+        // Guard Clause: Only block if user is trying to add a new highlight
         // and they have already hit the limit.
         if (!isCurrentlySelected && this.#hasReachedSelectionLimit()) {
             ui.notifications.warn(game.i18n.localize("RMU_STORYBOARD.Wizard.Notifications.LimitReached"));
@@ -132,7 +132,7 @@ export class RMUStoryboardWizard extends HandlebarsApplicationMixin(ApplicationV
 
         this.#state.activeTab = newTab;
 
-        // We re-render the whole app to update tab classes and content visibility
+        // Re-render the whole app to update tab classes and content visibility
         this.render({ force: true });
     }
 

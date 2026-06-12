@@ -1,13 +1,9 @@
 {
     "id": "rmu-combat-storyboard",
     "title": "Combat Storyboard for RMU",
-    "description": "A combat logger for RMU to generate human-readable reports and AI prompts. It translates raw combat data into dense, token-efficient prompts. Use the dedicated GM wizard to refine your highlight reel, manage cast descriptions, and generate multi-page comic scripts via external AI tools. Note: This module does not contain any AI functionality itself, but is designed to work with external AI services.",
+    "description": "A combat logger for RMU to generate human-readable combat reports and AI prompts. It translates raw combat data into token-efficient prompts. Use the dedicated GM wizard to refine your highlight reel, manage cast descriptions, and generate multi-page comic scripts via external AI tools. Note: This module does not contain any AI functionality itself, but is designed to work with external AI services.",
     "version": "1.0.0",
-    "compatibility": {
-        "minimum": "14",
-        "verified": "14",
-        "maximum": "14"
-    },
+    "compatibility": { "minimum": "14", "verified": "14", "maximum": "14" },
     "authors": [{ "name": "Ken Dearman" }],
     "esmodules": ["main.js"],
     "styles": ["styles/filroden-theme.css", "styles/rmu-combat-storyboard.css"],

@@ -87,7 +87,7 @@ function _compileTimeline(timeline) {
     const consolidatedTimeline = consolidateEvents(timeline);
     const eventLines = consolidatedTimeline.map(_compileEvent);
 
-    // Provide a fallback just in case the localization key is missing
+    // Provide a fallback just in case the localisation key is missing
     const combatEnds = game.i18n.has("RMU_STORYBOARD.Wizard.Log.CombatEnds") ? game.i18n.localize("RMU_STORYBOARD.Wizard.Log.CombatEnds") : "Combat Ends";
 
     // Append the tag in standard Dense Notation bracket format
@@ -342,7 +342,7 @@ export function compileHumanReadableLog(state) {
     const hrTimeline = buildHumanReadableTimeline(state.timeline);
     const rounds = _groupEventsByRound(hrTimeline);
 
-    // 1. Initialize the array with all context, roster, and header blocks simultaneously
+    // 1. Initialise the array with all context, roster, and header blocks simultaneously
     const lines = [
         ..._buildHumanReadableContextBlock(state.campaignContext),
         ..._buildHumanReadableRosterBlock(state.roster),
@@ -406,7 +406,7 @@ function _compileHumanReadableCombatAction(event) {
     const hero = event.isHighlighted ? `★ ${game.i18n.localize("RMU_STORYBOARD.Wizard.Log.HeroMoment")}: ` : "";
     const using = game.i18n.localize("RMU_STORYBOARD.Wizard.Log.Using");
 
-    // Only show parent results if it's NOT an AoE
+    // Only show parent results if it's not an AoE
     let resultStr = "";
     if (!event.isAoE && event.result) {
         resultStr = ` - ${_buildOutcomeString(event.flair, event.result, event.effect, "")}`;

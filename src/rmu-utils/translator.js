@@ -1,5 +1,5 @@
 /**
- * Translates the raw RMU attack payload into our Dense Notation schema.
+ * Translates the raw RMU attack payload into Dense Notation schema.
  */
 export function translateAttackData(attackData) {
     // Intercept the Scene Attack token ID
@@ -213,7 +213,6 @@ export function translateResistanceRollData(rrData) {
         weapon: `${realm} Resistance`,
         flair: _mapFlair(rrData.statuses),
         result: _sanitizeResistanceResult(rrData.statuses),
-        // Map the effects using our existing pipeline
         effect: _mapEffects(validEffects, []),
         systemNarrative: _buildRRNarrative(rrData.location),
         isHighlighted: false,

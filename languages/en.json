@@ -35,7 +35,7 @@
     "RMU_STORYBOARD.Wizard.Placeholders.SelectLog": "-- Choose a saved log --",
     "RMU_STORYBOARD.Wizard.Hints.LogSelection": "Load a previously saved combat encounter from your Journal to generate a script.",
     "RMU_STORYBOARD.Wizard.Notifications.LogSaved": "Combat log saved to Journal.",
-    "RMU_STORYBOARD.Dialogs.FolderName": "RMU Combat Storyboard Logs",
+    "RMU_STORYBOARD.Dialogs.FolderName": "Combat Storyboard Logs",
     "RMU_STORYBOARD.Dialogs.JournalPageName": "Storyboard Data",
     "RMU_STORYBOARD.Dialogs.JournalPageText": "<p><em>This is a raw data log for the RMU Combat Storyboard. Please open the Storyboard Wizard from the Combat Tracker to view, curate, and compile this script.</em></p>",
     "RMU_STORYBOARD.Wizard.Notifications.Downloaded": "Combat log downloaded.",

@@ -58,13 +58,10 @@ function _handleCombatUpdate(combat, updates) {
  * Intercepts combat deletion to prompt the GM to save the log.
  */
 async function _handleCombatEnd(combat, options, userId) {
-    // Native First: Only show the dialog to the specific GM who actually clicked "End Combat"
+    // Only show the dialog to the specific GM who actually clicked "End Combat"
     if (game.user.id !== userId || !game.user.isGM) return;
 
     const eventLog = combat.getFlag("rmu-combat-storyboard", "eventLog");
-
-    // Diagnostic Probe: Check the console (F12) to see exactly what data we have
-    console.log("Combat Storyboard for RMU | Ending Combat. Log Data:", eventLog);
 
     // Guard against empty combats
     if (!eventLog || eventLog.length === 0) {

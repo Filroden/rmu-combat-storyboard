@@ -1,5 +1,5 @@
 /**
- * Injects the module's launch button into the native Foundry Combat Tracker.
+ * Injects the module's launch button into the Foundry Combat Tracker.
  */
 import { RMUStoryboardWizard } from "./wizard.js";
 
@@ -13,7 +13,7 @@ function injectSidebarButton(app, html) {
     // Guard against jQuery wrappers to ensure native DOM manipulation
     const directoryElement = html[0] || html;
 
-    // Target the V14 encounters navigation area
+    // Target the encounters navigation area
     const encountersNav = directoryElement.querySelector(".combat-tracker-header .encounters");
     if (!encountersNav) return;
 
@@ -26,7 +26,7 @@ function injectSidebarButton(app, html) {
     const wrapper = document.createElement("div");
     wrapper.className = "rmu-storyboard-nav-wrapper";
 
-    // Move existing native children (e.g., 'Create Encounter' or the dropdown) into our wrapper
+    // Move existing native children (e.g., 'Create Encounter' or the dropdown) into wrapper
     while (encountersNav.firstChild) {
         wrapper.appendChild(encountersNav.firstChild);
     }
